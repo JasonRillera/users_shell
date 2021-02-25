@@ -1,0 +1,57 @@
+# Query: Create 3 new users   
+User.objects.create(first_name="Pika", last_name="Chu", email_address="pikachu@pokemon.com", age=25)
+User.objects.create(first_name="Chari", last_name="Zard", email_address="charizard@pokemon.com", age=25)
+User.objects.create(first_name="Mew", last_name="Two", email_address="mewtwo@pokemon.com", age=25)
+
+# Query: Retrieve all the users   
+User.objects.all()
+
+# Query: Retrieve the last user   
+User.objects.last()
+
+# Query: Retrieve the first user  
+User.objects.first()
+
+# Query: Change the user with id=3 so their last name is Pancakes.    
+user_three = User.objects.get(id=3)
+user_three.last_name = "Pancakes"
+user_three.save()
+
+# Query: Delete the user with id=2 from the database  
+user_two = User.objects.get(id=2)
+user_two.delete()
+
+# Query: Get all the users, sorted by their first name    
+User.objects.order_by('first_name')
+
+# BONUS Query: Get all the users, sorted by their first name in descending order  
+User.objects.order_by('-first_name')
+
+======================================
+
+
+>>> from pokemon.models import User
+>>> User.objects.all()
+<QuerySet []>
+>>> User.objects.create(first_name="Pika", last_name="Chu", email_address="pikachu@pokemon.com", age=25)
+<User: User object (1)>
+>>> User.objects.create(first_name="Chari", last_name="Zard", email_address="charizard@pokemon.com", age=25)
+<User: User object (2)>
+>>> User.objects.create(first_name="Mew", last_name="Two", email_address="mewtwo@pokemon.com", age=25)
+<User: User object (3)>
+>>> User.objects.all()
+<QuerySet [<User: User object (1)>, <User: User object (2)>, <User: User object (3)>]>
+>>> User.objects.last()
+<User: User object (3)>
+>>> User.objects.first()
+<User: User object (1)>
+>>> user_three = User.objects.get(id=3)
+>>> user_three.last_name = "Pancakes"
+>>> user_three.save()
+>>> user_two = User.objects.get(id=2)
+>>> user_two.delete()
+(1, {'pokemon.User': 1})
+>>> User.objects.order_by('first_name')
+<QuerySet [<User: User object (3)>, <User: User object (1)>]>
+>>> User.objects.order_by('-first_name')
+<QuerySet [<User: User object (1)>, <User: User object (3)>]>
